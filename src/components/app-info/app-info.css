@@ -1,0 +1,14 @@
+.app-info{
+  height: 150px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #3E8275;
+  color: #E4FEFF;
+}
+
+.app-info h1, h2{
+  font-size: 25px;
+  margin-bottom: 5px;
+}

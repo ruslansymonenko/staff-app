@@ -19,12 +19,33 @@ class App extends Component {
     }
   }
 
+  makeId = () => {
+    return `id${Math.random().toString(16).slice(2)}`;
+  }
+
   deleteItem = (id) => {
     this.setState(({data}) => {
       return {
         data: data.filter(item => item.id !== id)
       }
     });
+  }
+
+  addNewItem = (event, name, salary) => {
+    event.preventDefault();
+
+    const newItem = {
+      id: this.makeId(),
+      name: name,
+      salary: salary,
+      bonus: false
+    }
+
+    this.setState(({data}) => {
+      return {
+        data: [].concat(data, [newItem])
+      }
+    })
   }
 
 
@@ -43,7 +64,7 @@ class App extends Component {
           onDelete={this.deleteItem}
           />
   
-        <StaffAddForm/>
+        <StaffAddForm addItem={this.addNewItem}/>
       </div>
     )
   }

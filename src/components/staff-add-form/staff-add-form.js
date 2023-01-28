@@ -6,18 +6,25 @@ class StaffAddForm extends Component {
     super(props)
     this.state = {
       name: '',
-      salary: ''
+      salary: '',
     }
   }
 
   onValueChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
-    })
+    });
+  }
+
+  formEmptyMessage = (event) => {
+    event.preventDefault();
+    alert('Please fill all field!')
   }
 
   render() {
-    const {name, salary} = this.state
+    const {name, salary} = this.state;
+    const {addItem} = this.props;
+    const formFilled = this.state.name !== '' && this.state.salary !== '';
 
     return (
       <div className="app-add-form">
@@ -41,7 +48,17 @@ class StaffAddForm extends Component {
   
             <button 
               type="submit"
-              className="btn btn-outline-light">
+              className="btn btn-outline-light"
+              onClick={
+                formFilled ? (event) => {
+                  addItem(event, name, salary);
+                  this.setState({name: ''});
+                  this.setState({salary: ''})
+                } 
+                : 
+                (event) => this.formEmptyMessage(event)
+              }
+              >
                 Add
             </button>
         </form>

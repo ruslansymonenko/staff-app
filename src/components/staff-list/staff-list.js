@@ -1,7 +1,7 @@
 import StaffListItem from "../staff-list-item/staff-list-item";
 import './staff-list.css';
 
-const StaffList = ({data, onDelete, onToggleBonus, onToggleRise}) => {
+const StaffList = ({data, onDelete, onToggleProp}) => {
   const elements = data.map(item => {
     return (
       <StaffListItem 
@@ -11,8 +11,7 @@ const StaffList = ({data, onDelete, onToggleBonus, onToggleRise}) => {
         bonus={item.bonus}
         rise={item.rise}
         onDelete={() => onDelete(item.id)}
-        onToggleBonus={() => onToggleBonus(item.id)}
-        onToggleRise={() => onToggleRise(item.id)}
+        onToggleProp={(e) => onToggleProp(item.id, e.currentTarget.getAttribute('data-toggle'))}
         />
     )
   })

@@ -49,22 +49,11 @@ class App extends Component {
     })
   }
 
-  onToggleBonus = (id) => {
+  onToggleProp = (id, prop) => {
     this.setState(({data}) => ({
       data: data.map(item => {
         if(item.id === id) {
-          return{...item, bonus: !item.bonus};
-        }
-        return item;
-      })
-    }))
-  }
-
-  inToggleRise = (id) => {
-    this.setState(({data}) => ({
-      data: data.map(item => {
-        if(item.id === id) {
-          return{...item, rise: !item.rise};
+          return{...item, [prop]: !item[prop]};
         }
         return item;
       })
@@ -90,8 +79,7 @@ class App extends Component {
         <StaffList 
           data={this.state.data}
           onDelete={this.deleteItem}
-          onToggleBonus={this.onToggleBonus}
-          onToggleRise={this.inToggleRise}
+          onToggleProp={this.onToggleProp}
           />
   
         <StaffAddForm addItem={this.addNewItem}/>

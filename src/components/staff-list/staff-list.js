@@ -1,7 +1,7 @@
 import StaffListItem from "../staff-list-item/staff-list-item";
 import './staff-list.css';
 
-const StaffList = ({data, onDelete}) => {
+const StaffList = ({data, onDelete, onToggleBonus, onToggleRise}) => {
   const elements = data.map(item => {
     return (
       <StaffListItem 
@@ -9,7 +9,10 @@ const StaffList = ({data, onDelete}) => {
         name={item.name} 
         salary={item.salary}
         bonus={item.bonus}
+        rise={item.rise}
         onDelete={() => onDelete(item.id)}
+        onToggleBonus={() => onToggleBonus(item.id)}
+        onToggleRise={() => onToggleRise(item.id)}
         />
     )
   })
